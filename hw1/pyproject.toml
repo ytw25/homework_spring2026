@@ -13,7 +13,7 @@ dependencies = [
     "pymunk<7",
     "ruff>=0.14.10",
     "setuptools>=80.9.0",
-    "torch>=2.9.1",
+    "torch==2.9.1",
     "tyro>=1.0.3",
     "wandb==0.23.1",
     "zarr>=3.1.5",
@@ -28,3 +28,18 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'win32' or sys_platform == 'linux'" },
+]
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
